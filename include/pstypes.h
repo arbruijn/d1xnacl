@@ -34,6 +34,12 @@ typedef unsigned short ushort;
 typedef unsigned int uint;
 #endif
 
+#ifdef __native_client__
+typedef unsigned int u_int32_t;
+typedef unsigned short u_int16_t;
+typedef unsigned long long u_int64_t;
+#endif
+
 #if defined(_WIN32) || defined(__sun__) // platforms missing (u_)int??_t
 # include <SDL/SDL_types.h>
 #elif defined(macintosh) // misses (u_)int??_t and does not like SDL_types.h
