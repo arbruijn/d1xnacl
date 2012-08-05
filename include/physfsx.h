@@ -43,6 +43,11 @@
 // The user directory is searched first.
 static inline void PHYSFSX_init(int argc, char *argv[])
 {
+#ifdef __native_client__
+	char *base_dir = "/"; 
+	PHYSFS_init("d1xnacl");
+	PHYSFS_setWriteDir("/");
+#else
 #if defined(__unix__)
 	char *path = NULL;
 	char fullPath[PATH_MAX + 5];
@@ -116,10 +121,13 @@ static inline void PHYSFSX_init(int argc, char *argv[])
 
 	PHYSFS_addToSearchPath(PHYSFS_getWriteDir(), 1);
 #endif
+#endif
 
 	PHYSFS_addToSearchPath(base_dir, 1);
 	InitArgs( argc,argv );
+#ifndef __native_client__
 	PHYSFS_removeFromSearchPath(base_dir);
+#endif
 
 	if (!PHYSFS_getWriteDir())
 	{
