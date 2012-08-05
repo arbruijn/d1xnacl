@@ -5,9 +5,9 @@
 #include <ppapi/cpp/url_loader.h>
 #include <ppapi/cpp/url_request_info.h>
 #include <ppapi/cpp/url_response_info.h>
-#if ADHOC_PPAPI_VERSION >= 18
+//#if ADHOC_PPAPI_VERSION >= 18
 #include <ppapi/utility/completion_callback_factory.h>
-#endif
+//#endif
 #include <string>
 #include <vector>
 #include "loaddata.h"
