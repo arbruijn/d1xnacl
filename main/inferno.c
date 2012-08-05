@@ -219,7 +219,11 @@ void error_messagebox(char *s)
 int MacHog = 0;	// using a Mac hogfile?
 #define PROGNAME argv[0]
 
+#ifdef __native_client__
+int game_main(int argc,char *argv[])
+#else
 int main(int argc,char *argv[])
+#endif
 {
 	mem_init();
 
