@@ -28,6 +28,7 @@
 #include "digi_mixer_music.h"
 #include "jukebox.h"
 #include "console.h"
+#include "oplmus.h"
 
 #include "fix.h"
 #include "gr.h" // needed for piggy.h
@@ -90,6 +91,8 @@ int digi_mixer_init() {
   //jukebox_list();
 
   digi_initialised = 1;
+
+  oplmus_init();
 
   return 0;
 }
@@ -237,6 +240,9 @@ void digi_mixer_play_midi_song(char * filename, char * melodic_bank, char * drum
     return;
 
   mix_set_music_volume(midi_volume);
+
+  oplmus_play(filename, melodic_bank, drum_bank, loop);
+#if 0
   jukebox_load(); // update jukebox state
 
   // quick hack to check if filename begins with "game" -- MD2211
@@ -260,6 +266,7 @@ void digi_mixer_play_midi_song(char * filename, char * melodic_bank, char * drum
 #endif
       mix_play_music(filename, loop);
   }
+#endif
 }
 
 int digi_mixer_music_exists(const char *filename)
@@ -277,7 +284,8 @@ void digi_mixer_stop_current_song() {
   }
 #endif
   jukebox_stop();
-  mix_stop_music();
+  //mix_stop_music();
+  oplmus_play(NULL, NULL, NULL, 0);
 }
 
 void digi_mixer_pause_midi() {}
