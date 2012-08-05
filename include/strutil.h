@@ -12,7 +12,7 @@ extern int strnicmp(const char *s1, const char *s2, int n);
 #endif
 
 #ifndef _WIN32
-#ifndef __DJGPP__
+#if !defined(__DJGPP__) && !defined(__native_client__)
 void strupr( char *s1 );
 void strlwr( char *s1 );
 #endif

@@ -106,7 +106,7 @@ int strncasecmp(char *s1, char *s2, int n)
 #endif
 
 #ifndef _WIN32
-#ifndef __DJGPP__
+#if !defined( __DJGPP__) && !defined(__native_client__)
 void strlwr( char *s1 )
 {
 	while( *s1 )	{
